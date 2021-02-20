@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        tr,td,th{
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+<div align="center">
+    <h1>Shopping Care</h1>
+    <table border="1" width="800px">
+        <tr>
+
+            <th>Image</th>
+            <th>Name</th>
+            <th>Price</th>
+            <th>Quantity</th>
+            <th>Sub Total</th>
+            <th>Option</th>
+        </tr>
+
+            <tr th:each="item,iterStat : ${session.carts.orderSessions}">
+
+                <td align="center"><img width="150px" height="150px" th:src="${item.product.imgSrc}" alt=""></td>
+                <td th:text="${item.product.name}"></td>
+                <td th:text="${item.product.price}"></td>
+                <td th:text="${item.quantity}"></td>
+                <td th:text="${item.product.price * item.quantity}"></td>
+                <td>
+                    <a th:href="@{/carts/delete/__${item.product.id}__}">Remove</a>
+                </td>
+
+            </tr>
+
+
+
+
+
+    </table>
+    <h2 ><a th:href="@{/productss}">Continue Shopping</a></h2>
+    <h2><a th:href="@{/carts/order}">Save</a></h2>
+</div>
+
+</body>
+</html>

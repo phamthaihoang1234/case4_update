@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="product/layout :: head"></head>
+<body>
+<h3> View product</h3>
+<p>
+    <a th:href="@{/productss}">
+        Back to product list
+    </a>
+</p>
+
+<div id="form">
+    <th:block   th:object="${product}" >
+        <div>
+            <label>Product Picture</label>
+            <img width="150px" height="150px" th:src="${'/'+product.imgSrc}"/>
+        </div>
+
+
+        <div>
+            <label>Name</label>
+            <input type="text" th:field="*{name}"/>
+        </div>
+        <div>
+            <label>Price</label>
+            <input type="text" th:field="*{price}"/>
+        </div>
+
+        <p><a th:href="@{/carts/__${product.id}__}">Order Now</a></p>
+    </th:block>
+</div>
+<footer th:replace="product/layout :: footer"></footer>
+</body>
+</html>
